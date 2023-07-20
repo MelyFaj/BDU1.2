@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int choice, word, choice_row_or_col, base,lr,lc,lw,ur,uc,uw,i,j,k;
+    printf("(1)D, (2)D or (3)D? ");
+    scanf("%d", &choice);
+    if(choice==1){
+        printf("a[?:?] ");
+        scanf("%d%d", &lr,&ur);
+        printf("Base: ");
+        scanf("%d", &base);
+        printf("Word: ");
+        scanf("%d", &word);
+        printf("a[?] ");
+        scanf("%d", &i);
+        if(i>ur || i<lr){
+            printf("NOT POSSIBLE!!!");
+        }
+        else{
+            printf("%d\n", base+(word*(i-lr)));
+        }
+
+    }
+    else if(choice==2){
+        printf("a[?:?, ?:?] ");
+        scanf("%d%d%d%d", &lr,&ur, &lc, &uc);
+        printf("Base: ");
+        scanf("%d", &base);
+        printf("Word: ");
+        scanf("%d", &word);
+        printf("a[?,?] ");
+        scanf("%d%d", &i, &j);
+        if(i>ur || j>uc || i<lr || j<lc){
+            printf("NOT POSSIBLE!!!");
+        }
+        else{
+            printf("Row(1) or Col major(2)");
+            scanf("%d", &choice_row_or_col);
+            if(choice_row_or_col==1){
+                printf("%d\n", base+(word*(((i-lr)*(uc-lc+1))+(j-lc))));
+            }
+            else if(choice_row_or_col==2){
+                printf("%d\n", base+(word*(((j-lc)*(ur-lr+1))+(i-lr))));
+            }
+
+        }
+
+
+    }
+    else if(choice==3){
+        printf("a[?:?, ?:?, ?:?] ");
+        scanf("%d%d%d%d%d%d", &lr,&ur, &lc, &uc, &lw, &uw);
+        printf("Base: ");
+        scanf("%d", &base);
+        printf("Word: ");
+        scanf("%d", &word);
+        printf("a[?,?,?] ");
+        scanf("%d%d%d", &i, &j, &k);
+        if(i>ur || j>uc || i<lr || j<lc || k>uw || k<lw){
+            printf("NOT POSSIBLE!!!");
+        }
+        else{
+            printf("Row(1) or Col major(2)");
+            scanf("%d", &choice_row_or_col);
+            if(choice_row_or_col==1){
+                printf("%d\n", base+(word*((((i-lr)*(uc-lc+1)+(j-lc))*(uw-lw+1))+(k-lw))));
+            }
+            else if(choice_row_or_col==2){
+                printf("%d\n", base+(word*(((((k-lw)*(uc-lc+1))+(j-lc))*(ur-lr+1))+(i-lr))));
+                }
+
+        }
+
+
+    }
+    return 0;
+}
