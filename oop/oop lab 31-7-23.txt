@@ -1,0 +1,89 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class movie{
+
+    protected:
+        string name;
+        string audience;
+        int duration;
+    public:
+        movie(string n, string a, int d){
+            name=n;
+            audience=a;
+            duration=d;
+        }
+        void display();
+
+};
+
+class horror:public movie{
+    int fear_rating;
+    public:
+        horror(string n, string a, int d,int fr): movie(n, a, d){
+        fear_rating = fr;
+        }
+        void display(){
+        cout<<"Movie title: "<<name<<endl;
+        cout<<"Audience: "<<audience<<endl;
+        cout<<"Duration: "<<duration<<" minutes"<<endl;
+        cout<<"Fear rating: "<<fear_rating<<" out of 5"<<endl;
+        }
+
+};
+
+class comedy:public movie{
+    int laugh_rating;
+    public:
+        comedy(string n, string a, int d,int lr): movie(n, a, d){
+        laugh_rating = lr;
+        }
+        void display(){
+        cout<<"Movie title: "<<name<<endl;
+        cout<<"Audience: "<<audience<<endl;
+        cout<<"Duration: "<<duration<<" minutes"<<endl;
+        cout<<"Laugh-rating: "<<laugh_rating<<" out of 5"<<endl;
+        }
+
+};
+
+class flexible:public movie{
+    int rating;
+    public:
+        flexible(string n, string a, int d,int r):movie(n,a,d){
+            rating=r;
+        }
+        int rate(){
+            return rand()%5;
+        }
+        int audi(){
+            return rand()%4;
+        }
+        int du(){
+            return rand()%200;
+        }
+        void display(){
+        cout<<"Movie title: "<<name<<endl;
+        cout<<"Audience: "<<audience<<endl;
+        cout<<"Duration: "<<duration<<" minutes"<<endl;
+        cout<<"Rating: "<<rating<<" out of 5"<<endl;
+        }
+};
+
+int main()
+{   string t;
+    string audience[5]={"Infant", "Toddler", "Tween", "Teen", "Adult"};
+    horror h1("'Fearless'", "13+", 190, 2);
+    h1.display();
+    cout<<endl;
+    comedy c1("'LOL'", "7+", 200, 4);
+    c1.display();
+    cout<<endl;
+    cout<<"Enter a movie-title: ";
+    cin>>t;
+    flexible f1(t,audience[f1.audi()] , f1.du(), f1.audi());
+    f1.display();
+
+    return 0;
+}
