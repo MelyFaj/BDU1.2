@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<stdbool.h>
+
+
+int top = -1;
+int push(int *a, int n, int el){
+    if(top==n-1){
+        printf("Overflow!\n");
+        return -1;
+    }
+    a[++top]=el;
+    return 0;
+}
+
+int pop(int *a){
+    if(top==-1){
+        return -1;
+    }
+    top--;
+    return a[top+1];
+}
+
+int peek(int *a){
+    if(top==-1){
+        printf("Empty stack\n");
+        return -1;
+    }
+    return a[top];
+}
+
+bool isFull(int n){
+    if(top==n-1){
+        return true;
+    }
+    return false;
+}
+
+bool isEmpty(){
+    if(top==-1){
+        return true;
+    }
+    return false;
+}
+
+void display(int a[]){
+    printf("Your stack:\n");
+    for(int i=top; i>-1; i--){
+        printf("%d\n", a[i]);
+    }
+}
+
+int main(){
+
+    int n, top = -1, chc=1, el;
+    char c;
+    printf("Size of stack: ");
+    scanf("%d", &n);
+    int a[n];
+    while(chc){
+        printf("Menu:\n1. PUSH\n2. POP\n3. TopElement\n4. Display\nEnter your choice: ");
+        scanf("%d", &chc);
+        if(chc==1){
+            printf("Element to insert: ");
+            scanf("%d", &el);
+            push(a, n, el);
+            
+        }
+        else if(chc==2){
+            int tmp = pop(a);
+            if(tmp!=-1){
+                printf("Popped element: %d\n", tmp);
+            }
+            else
+                printf("Underflow!\n");;
+            
+        }
+        else if(chc==3){
+            printf("Top element: %d\n", peek(a));  
+        }
+        else if(chc==4){
+            display(a);
+        }
+        printf("Do you wish to continue?(y/n) ");
+        scanf(" %c", &c);
+        if(c==n)
+            chc=0;
+    }
+
+
+    return 0;
+}
