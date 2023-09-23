@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+int psudorandom_number_generator(int x, int a, int m, int c){
+	int y=-1;
+	for(int i = x; i!=y; ){
+		if(y==-1)
+		y=x;
+		y=(a*y+c)%m;
+		printf("%d\n", y);
+	}
+}
+int main() {
+    int x, a, m, c;
+    scanf("%d%d%d%d", &x, &a, &m, &c);
+	if(m==0) exit(1);
+    psudorandom_number_generator(x,a,m,c);
+    return 0;
+}
