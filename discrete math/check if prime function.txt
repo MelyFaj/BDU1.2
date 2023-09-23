@@ -1,0 +1,23 @@
+void prime(){
+    int n;
+    cout<<"Enter 0 to break out.\n";
+    while(1){
+    cout<<"Enter number: ";
+    scanf(" %d", &n);
+    if(n==0) break;
+    else if(n==1)
+        printf("Not Prime.\n");
+    else if(n==2)
+        printf("Prime!\n");
+    for(int i=2; i<n; i++){
+        if((n/i)<i && n%i!=0){
+            printf("Prime!\n");
+            break;
+        }
+        else if(n%i==0){
+            printf("Not Prime. The least divisor: %d\n", i);
+            break;
+        }
+    }
+    }
+}
