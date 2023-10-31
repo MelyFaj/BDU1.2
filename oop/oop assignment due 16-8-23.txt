@@ -1,0 +1,78 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class complex{
+	public:
+		float real;
+		float imag;
+
+		complex(){}
+		complex(float Real,float Imag){
+			real = Real;
+			imag = Imag;
+		}
+
+		string toString(){
+			string s;
+            if(imag>=0)
+		        s = to_string(real)  +" + "+ to_string(imag) + "i" ;
+            else
+            	s = to_string(real) + to_string(imag) + "i" ;
+		    return s;
+		}
+/*
+		complex add(complex c){
+		    return complex(real+c.real, imag+c.imag);
+		}
+*/
+		complex operator + (complex c){
+		    complex temp;
+		    temp.real = real + c.real;
+		    temp.imag = imag + c.imag;
+		    return temp;
+		}
+
+		complex operator - (complex c){
+		    complex temp;
+		    temp.real = real - c.real;
+		    temp.imag = imag - c.imag;
+		    return temp;
+		}
+
+		complex operator ++ (){
+		    real = real + 1;		    
+		}
+
+		complex operator -- (){
+		    real = real - 1;
+		}
+
+		string operator << (complex c){
+			if(imag>=0)
+		    	cout<<c.real<<" + "<<c.imag<<"i";
+			else
+		    	cout<<c.real<<c.imag<<"i";
+		}
+
+};
+int main(){
+	complex c1(5,20);
+	complex c2(10,30);
+	//cout<< c1.toString()<<"\n";
+	//cout<< c2.toString()<<"\n";
+	complex c3, c4;
+
+	c3 = c1 + c2;
+	c4 = c1 - c2; //(real - real, imag -imag )
+	cout << c1; //(will print as real + i)
+	//++c1; //(only real part increased by 1)
+	//--c2; //(only real part decreased by 1)
+	//cout<<c1.toString()<<"\n";
+	//cout<<c2.toString()<<"\n";
+	//cout<<c3.toString()<<"\n";
+	//cout<<c4.toString()<<"\n";
+	//cout<< c4.toString()<<"\n";
+
+	return 0;
+}
