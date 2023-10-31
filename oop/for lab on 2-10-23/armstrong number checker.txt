@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <math.h>
+int digit_counter(long long int n){
+     long long int tmp=n;
+     int digit=0;
+    while(tmp>0){
+        tmp/=10;
+        digit++;
+    }
+    return digit;
+}
+
+int main() {
+    long long int n,tmp,digit_num;
+    double sum=0;
+    scanf("%lld", &n);
+    tmp=n;
+    digit_num=digit_counter(n);
+    while(tmp>0){
+        sum+=pow((tmp%10), digit_num);
+        tmp/=10;
+    }
+    if(sum==n)
+        printf("An Armstrong number.", n);
+    else
+        printf("Not an Armstrong number.", n);
+
+    return 0;
+}
