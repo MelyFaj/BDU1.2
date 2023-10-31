@@ -1,0 +1,21 @@
+//***generating fibonacci sequence till nth term using C,
+
+#include <stdio.h>
+
+void fibonacci(){
+    int f0=0, f1=1,f=0;
+    int i,n;
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+        printf("%5d",f);
+        f=f0+f1;
+        f1=f0;
+        f0=f;
+    }
+}
+
+int main() {
+    fibonacci();
+    return 0;
+}

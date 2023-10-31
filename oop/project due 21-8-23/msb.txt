@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<math.h>
+void msb(){
+    long int n, msb;
+    scanf("%ld", &n);
+    msb = 1<<((int)(log(n)/log(2)));
+    printf("%d", msb);
+}
+int main(){
+    msb();
+    return 0;
+}

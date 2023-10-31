@@ -1,0 +1,55 @@
+#include<iostream>
+#include <ctime>
+#include <chrono>
+using namespace std;
+
+    auto start = std::chrono::system_clock::now();
+
+    auto end = std::chrono::system_clock::now();
+class Date {
+
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+    public:
+    Date(){
+        cout << "finished computation at " << std::ctime(&end_time)<<endl;
+    }
+};
+
+
+
+class Account{
+    private:
+        int ID;
+        double Balance;
+        double AnnualInterestRate;
+        Date date_created;
+
+    public:
+        Account(int id, double balance, double annualInterestRate){
+            ID = id;
+            Balance = balance;
+            AnnualInterestRate = annualInterestRate;
+        }
+
+        bool withdraw(double amount){
+            if(Balance-amount<0)
+                return false;
+
+            else{
+                Balance-=amount;
+                return true;
+            }
+        }
+
+        void deposit(double amount){
+            Balance+=amount;
+        }
+};
+
+int main(){
+    Account testAccount(1122, 40000, 4.5);
+
+    testAccount.withdraw(2500);
+    testAccount.deposit(3000);
+    return 0;
+}

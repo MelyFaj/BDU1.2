@@ -1,0 +1,117 @@
+#include<iostream>
+#include <string>
+#include <list>
+using namespace std;
+class Account{
+    private:
+        int ID;
+        double Balance;
+        double AnnualInterestRate;
+
+    public:
+        Account(int id, double balance, double annualInterestRate){
+            ID = id;
+            Balance = balance;
+            AnnualInterestRate = annualInterestRate;
+        }
+
+        bool withdraw(double amount){
+            if(Balance-amount<0)
+                return false;
+
+            else{
+                Balance-=amount;
+                return true;
+            }
+        }
+
+        void deposit(double amount){
+            Balance+=amount;
+        }
+        int getID(){
+            return ID;
+        }
+        string toString(){
+            return to_string(ID) + " " + to_string(Balance) + " " + to_string(AnnualInterestRate);
+        }
+};
+
+class Client{
+    private:
+        int id;
+        std::string name;
+        std::string phone;
+        std::list<Account>accounts;
+
+    public:
+        Client(int ID, std::string Name, std::string Phone){
+            id = ID;
+            name = Name;
+            phone = Phone;
+            std::list<Account>accounts;
+        }
+
+        bool addAccount(Account account){
+            accounts.push_back(account);
+            return true;
+        }
+
+        bool removeAccount(int accountId){
+            int flag=0;
+            for(auto it = accounts.begin(); it != accounts.end(); it++){
+                if(it->getID() == accountId){
+                flag=1;
+                accounts.erase(it);
+                break;
+            }
+        }
+        if(flag)
+            return true;
+        else
+            return false;
+}
+
+        std::string toString(){
+            string s = id + " " + name + " " + phone + "\n" ;
+            for(auto it = accounts.begin(); it != accounts.end(); it++){
+                s += it->toString() + "\n";
+            }
+            return s;
+        }
+        int getId(){
+            return id;
+        }
+        void setId(int id){
+            id=id;
+        }
+        string getName(){
+            return name;
+        }
+        string setName(string name){
+            name=name;
+        }
+        string getPhone(){
+            return phone;
+        }
+        string setPhone(string phone){
+            phone=phone;
+        }
+
+
+};
+
+int main(){
+    Client c[2] = {Client(100, "Ali", "123123123"), Client(200, "Deli", "456654546")};
+
+    c[0].addAccount(Account(1, 1000, 4.5));
+    c[0].addAccount(Account(2, 2000, 2.5));
+
+    c[1].addAccount(Account(3, 6000, 1.5));
+    c[1].addAccount(Account(4, 4000, 3.5));
+    c[1].addAccount(Account(5, 3000, 2.5));
+
+    cout<<c[0].toString()<<endl;
+    cout<<c[1].toString()<<endl;
+    cout<<endl;
+    return 0;
+}

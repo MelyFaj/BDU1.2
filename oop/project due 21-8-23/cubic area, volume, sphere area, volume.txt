@@ -1,0 +1,30 @@
+***C code for finding the volume and area of a box when its length, width, and height is given:
+
+
+#include <stdio.h>
+
+int main() {
+    float l, w, h, vol, are;
+    scanf("%f %f %f", &l, &w, &h);
+    vol=l*w*h;
+    are=2*(l*w+w*h+h*l);
+    printf("%f ", vol);
+    printf("%f", are);
+    return 0;
+}
+
+
+
+***C code for finding the volume and area of a sphere when its radius is given:
+
+ #include <stdio.h>
+
+int main() {
+    float r, vol, are;
+    scanf("%f", &r);
+    vol=(4/3)*3.1416*r*r*r;
+    are=4*3.14159*r*r;
+    printf("%f ", vol);
+    printf("%f", are);
+    return 0;
+}

@@ -1,0 +1,225 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class NumberSystem{
+	protected:
+		string num;
+
+	public:
+
+		NumberSystem(){
+			int b;
+			cout << "1. Binary to Decimal" << endl;
+			cout << "2. Decimal to Binary" << endl;
+			cout << "3. Decimal to Octal" << endl;
+			cout << "4. Decimal to Hexadecimal" << endl;
+			cout << "5. Octal to Binary" << endl;
+			cout << "6. Hexadecimal to Binary" << endl;
+			cout << "7. Octal to Hexadecimal" << endl;
+			cout << "8. Hexadecimal to Octal" << endl;
+			cout << "9. Binary to Hexadecimal" << endl;
+			cout << "10. Binary to Octal" << endl;
+			cout << "Type the initial number of your selection:";
+			cin >> b;
+			switch(b){
+			case 1:{
+				BinToDec();
+				break;}
+			case 2:{
+				//DecToBin db;
+				break;}
+			case 3:{
+				//DecToOc dc;
+				break;}
+			case 4:{
+				//DecToHex dh;
+				break;}
+			case 5:{
+				//OcToBin ob;
+				break;}
+			case 6:{
+				//HexToBin hb;
+				break;}
+			case 7:{
+				//OcToHex oh;
+				break;}
+			case 8:{
+				//HexToOc ho;
+				break;}
+			case 9:{
+				//BinToHex bh;
+				break;}
+			case 10:{
+				//BinToOc bo;
+				break;}
+			default:
+				cout << "Invalid Choice !"<< endl;
+				break;
+			}
+		}
+
+		void BinToDec(){
+			string b;
+			cout<<"Binary: ";
+			cin>>b;
+			int d = stoi(b, nullptr, 2);
+			cout<<"Decimal: "<<d;
+		}
+
+		void DecToBin(){
+			string b;
+			cout<<"Binary: ";
+			cin>>b;
+			int d = stoi(b, nullptr, 2);
+			cout<<"Decimal: "<<d;
+		}
+
+		void conversion_proccess(){
+
+		}
+
+		int conversion(){
+
+		}
+
+		void display(){
+
+		}
+
+};
+
+class BinToDec{
+	string num;
+	public:
+		BinToDec(){
+			conversion();
+		}
+
+		void getInput(){
+			cin>>num;
+		}
+
+		int count_char(){
+			int count=0;
+			for(int i=0; ;i++){
+				if(num[i]=='\0') break;
+				count++; 
+			}
+			return count;
+		}
+
+
+		void conversion_proccess(){
+			printf("proccess = ");
+			
+			int n = count_char();
+			for(int i=0; i<count_char();i++){
+				n--;
+				printf("%c*(2^%d)", num[i], n);
+				if(i<(count_char())-1)
+				printf("+");
+			}
+			printf("\n");
+		}
+
+		int conversion(){
+			cout<<"binary = ";
+			getInput();
+			conversion_proccess();
+			
+			int sum=0;
+
+			int n = count_char();
+
+			for(int i=0; i<count_char();i++){
+				
+				n--;
+				
+				if(num[i]=='0') 
+				sum = sum + 0;
+				
+				else if(num[i]=='1') 
+				sum = sum + (1<<n);
+			}
+			cout<<"decimal = "<<sum;
+		}
+};
+
+class DecToBin{
+	int num;
+	public:
+		DecToBin(){
+			conversion();
+		}
+		
+		void getInput(){
+			cout<<"decimal = ";
+			cin>>num;
+		}
+
+		void conversion(){
+			getInput();
+			string s;
+			int count=0;
+			printf("proccess = ");
+			
+			for(int i=num; i>0; i/=2){
+				printf("%d-%d^\n", i, i%2);
+				printf("_______\n");
+				if(i%2)
+					s+='1';
+				else if(!(i%2))
+					s+='0';
+				count++;
+			}
+			
+			for(int i=count-1; i>0; i--)
+				cout<<s[i];
+		}
+};
+
+
+class DecToOc{
+	int num;
+	int sum=0;
+	public:
+		DecToOc(){
+			conversion();
+		}
+		
+		void getInput(){
+			cout<<"decimal = ";
+			cin>>num;
+		}
+
+		void conversion(){
+			getInput();
+			string s;
+			int count=0;
+			printf("proccess = ");
+			
+			for(int i=num; i>0; i/=2){
+				printf("%d-%d^\n", i, i%2);
+				printf("_______\n");
+				if(i%2)
+					s+='1';
+				else if(!(i%2))
+					s+='0';
+				count++;
+			}
+			
+			for(int i=count-1; i>0; i--){
+				if(s[i]){
+					sum+=1<<(count-i-1);
+				}
+			}
+		}
+};
+int main() {
+
+
+
+
+    return 0;
+}
