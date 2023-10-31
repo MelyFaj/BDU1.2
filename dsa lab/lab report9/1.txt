@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define ROW 4
+#define COL 4
+
+int dRow[] = {-1, 0, 1, 0};
+int dCol[] = {0, 1, 0, -1};
+
+bool isValid(int row, int col, int maze[][COL], bool visited[][COL])
+{
+    return (row >= 0) && (row < ROW) && (col >= 0) && (col < COL)
+           && maze[row][col] && !visited[row][col];
+}
+
+void BFS(int maze[][COL], bool visited[][COL], int startRow, int startCol,
+         int targetRow, int targetCol)
+{
+    if (!maze[startRow][startCol] || !maze[targetRow][targetCol]) {
+        printf("-1");
+        return;
+    }
+
+    bool queue[ROW * COL];
+    int front = -1;
+    int rear = -1;
+
+    visited[startRow][startCol] = true;
+    queue[++rear] = startRow;
+    queue[++rear] = startCol;
+
+    while (front != rear) {
+        int currRow = queue[++front];
+        int currCol = queue[++front];
+
+        if (currRow == targetRow && currCol == targetCol) {
+            printf("%d", visited[currRow][currCol] - 1);
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int adjRow = currRow + dRow[i];
+            int adjCol = currCol + dCol[i];
+
+            if (isValid(adjRow, adjCol, maze, visited)) {
+                visited[adjRow][adjCol] = visited[currRow][currCol] + 1;
+                queue[++rear] = adjRow;
+                queue[++rear] = adjCol;
+            }
+        }
+    }
+
+    printf("-1");
+}
+
+int main()
+{
+    int maze[ROW][COL] =
+            {
+                    {1, 0, 0, 0},
+                    {1, 1, 0, 1},
+                    {0, 1, 1, 0},
+                    {1, 1, 1, 1}
+            };
+    int startRow, startCol, targetRow, targetCol;
+    printf("Start coordinates: ");
+    scanf("%d%d", &startRow, &startCol);
+    printf("Target coordinates: ");
+    scanf("%d%d", &targetRow, &targetCol);
+    bool visited[ROW][COL];
+    memset(visited, false, sizeof(visited));
+
+    BFS(maze, visited, startRow, startCol, targetRow, targetCol);
+
+    return 0;
+}
