@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int n, x, i=0;
+    scanf("%d", &n);
+    int a[n];
+    for(int i=0; i<n; i++){
+        scanf("%d", &a[i]);
+        for(int j=0; j<i; j++){
+            if(a[j]==a[i]){
+                printf("Enter a different number\n");
+                i--;
+            }
+        }
+    }
+    return 0;
+}
