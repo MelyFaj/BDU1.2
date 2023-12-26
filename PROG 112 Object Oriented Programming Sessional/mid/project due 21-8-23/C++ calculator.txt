@@ -1,0 +1,281 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include<cmath>
+#include <ctype.h>
+#define PI 3.141592654
+using namespace std;
+
+class arithmetic{
+private:
+    vector<float> numbers;
+    double a;
+public:
+    void getdata(){
+    char choice;
+    cout << "For final result enter '='" << endl;
+    cout << endl;
+    cout << "Enter numbers and operations: " << endl;
+    while (choice != '=') {
+        float num;
+        cin >> num;
+        addNumber(num);
+        cin >> choice;
+    }
+    }
+    void addNumber(float num) {
+        numbers.push_back(num);
+    }
+
+    void sumNumbers() {
+        float sum = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            sum += numbers[i];
+        }
+        cout << "Sum of the entered numbers: " << sum << endl;
+    }
+
+    void subtractNumbers() {
+        float result = numbers[0];
+        for (int i = 1; i < numbers.size(); i++) {
+            result -= numbers[i];
+        }
+        cout << "Result of subtraction: " << result << endl;
+    }
+
+    void multiplyNumbers() {
+        float result = 1;
+        for (int i = 0; i < numbers.size(); i++) {
+            result *= numbers[i];
+        }
+        cout << "Result of multiplication: " << result << endl;
+    }
+
+    void divideNumbers() {
+        float result = numbers[0];
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers[i] == 0) {
+                cout << "Error: Division by zero!" << endl;
+                return;
+            }
+            result /= numbers[i];
+        }
+        cout << "Result of division: " << result << endl;
+    }
+
+};
+class Arith : public arithmetic{
+public:
+
+     Arith(){
+    int operation;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> operation;
+    switch (operation) {
+        case 1:
+            {getdata();
+            sumNumbers();
+            break;}
+        case 2:
+            {getdata();
+            subtractNumbers();
+            break;}
+        case 3:
+            {getdata();
+            multiplyNumbers();
+            break;}
+        case 4:
+            {getdata();
+            divideNumbers();
+            break;}
+    }
+}
+};
+class trigonometric{
+private :
+    double ang;
+protected:
+    void get_angle(){
+    cout << "Enter angle in degrees : ";
+    cin >> ang;
+    }
+    void get_value(){
+    cout << "Enter value : ";
+    cin >> ang;
+    }
+    void COS(){
+       double x = ang * PI/180;
+    double result = cos(ang);;
+    cout <<" cos(" << ang << ") = " << result << endl;
+    }
+    void SIN(){
+       double x = ang * PI/180;
+    double result = sin(x);;
+    cout <<" sin(" << ang << ") = " << result << endl;
+    }
+    void TAN(){
+    if(ang ==90 || ang ==270 || ang ==450){
+    printf("\nMath error!\n");}
+    else{
+       double x = ang * PI/180;
+    double result = tan(x);;
+    cout <<" tan(" << ang << ") = " << result << endl;
+    }
+    }
+    void arc_COS(){
+         if(ang>1 || ang<-1){ // Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        double result = acos(ang);
+        double x=180/PI;
+    cout <<" cos^-1(" << ang << ") = " << result * x << endl;}
+    }
+    void arc_SIN(){
+        if(ang>1 || ang<-1){// Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        double result = asin(ang);
+        double x=180/PI;
+    cout <<"sin^-1(" << ang << ") = " << result * x << endl;}
+    }
+    void arc_TAN(){
+         if(ang>1 || ang<-1){ // Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        double result = atan(ang);
+        double x=180/PI;
+    cout <<"tan^-1(" << ang << ") = " << result * x << endl;}
+    }
+
+};
+class Trigono : public trigonometric{
+public:
+    Trigono(){
+    int b;
+    cout << "1. Sine" << endl;
+    cout << "2. Cosine" << endl;
+    cout << "3. Tangent" << endl;
+    cout << "4. Sine Inverse" << endl;
+    cout << "5. Cosine Inverse" << endl;
+    cout << "6. Tangent Inverse" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> b;
+    switch(b){
+    case 1:{
+         get_angle();
+         SIN();
+        break;}
+     case 2:{
+        get_angle();
+        COS();
+        break;}
+     case 3:{
+        get_angle();
+        TAN();
+        break;}
+     case 4:{
+        get_value();
+        arc_SIN();
+        break;}
+     case 5:{
+        get_value();
+        arc_COS();
+        break;}
+     case 6:{
+       get_value();
+       arc_TAN();
+        break;}
+     default:
+        cout << "Invalid Choice !"<< endl;
+        break;
+    }
+}
+
+};
+
+class Cryptography{
+	
+		char message[101];
+		short int key;
+
+	public:
+		Cryptography(){
+			int b;
+			cout << "1. Encrypt" << endl;
+			cout << "2. Decrypt" << endl;
+			cout << "Type the initial number of your selection:";
+			cin >> b;
+			switch(b){
+			case 1:{
+				encrypt();
+				break;}
+			case 2:{
+				decrypt();
+				break;}
+			default:
+				cout << "Invalid Choice !"<< endl;
+				break;
+			}
+		}
+		void encrypt(){
+			printf("Enter non-spaced-msg<ENTER>integer key\n---------------------------------------\n");
+			scanf(" %[^\n]s", message);
+			scanf("%hd", &key);
+
+			for(int i=0; message[i]!='\0'; i++){
+				//if u also wish to encrypt the space then comment this & the below 'if' out
+				if(message[i]==' ' && message[i+1]!='\0') i++;
+				if(message[i]>=97)
+					message[i] = ((((message[i]%97)+key)%26)+97-32);
+				else if(message[i]<97)
+					message[i] = ((((message[i]%65)+key)%26)+97-32);
+			}
+
+			printf("Encrypted: %s\n", message);
+		}
+
+		void decrypt(){
+			printf("Enter non-spaced-msg<ENTER>integer key\n---------------------------------------\n");
+			scanf(" %[^\n]s", message);
+			scanf("%hd", &key);
+			for(int i=0; message[i]!='\0'; i++){
+				message[i]=toupper(message[i]);
+				//if u also wish to encrypt the space then comment this and the above 'if' out
+				if(message[i]==' ' && message[i+1]!='\0') i++;
+				if(((message[i]%65)-key)<0)
+					message[i] = (((message[i]%65)-key)+26)+97;
+				else if(((message[i]%65)-key)>=0)
+					message[i] = ((message[i]%65)-key)+97;
+			}
+			printf("Decrypted: %s\n", message);
+		}
+};
+
+
+int main() {
+   int choice;
+    cout << "1- ARITHMETIC CALCULATIONS\n" << endl;
+    cout << "2- TRIGONOMETRIC FUNCTIONS\n" << endl;
+	cout << "3- CRYPTOGRAPHY\n" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> choice;
+    switch(choice){
+    case 1:{
+       Arith s;
+       break;}
+    case 2:{
+     Trigono t;
+     break;}
+	 case 3:{
+     Cryptography c;
+     break;}
+    default:
+     cout << "Invalid Choice !"<< endl;
+     break;
+     }
+    return 0;
+}

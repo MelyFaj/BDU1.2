@@ -1,0 +1,12 @@
+
+
+public class JavaApplication1 {
+
+       
+    public static void main(String[] args) {
+        System.out.println(Salam People!);
+        JavaApplication1Frame myFrame = new JavaApplication1Frame();
+        myFrame.init();
+    }
+    
+}

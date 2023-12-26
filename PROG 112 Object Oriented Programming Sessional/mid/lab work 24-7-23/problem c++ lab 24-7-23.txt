@@ -1,0 +1,101 @@
+Problem 1:
+Create a calculator class with attributes of 2 float variables and 4 methods to add, subtrac, multiply, devide and a constructor to take in two floats.
+Then create an instance of the class, an object to take in 2 arguments ie. 2 floats input by user.
+
+
+
+Code:
+#include<iostream>
+using namespace std;
+
+class Calc{
+    private:
+        float a;
+        float b;
+    public:
+        Calc(float A, float B){
+            a=A;
+            b=B;
+        }
+        float add(){
+            return a+b;
+        }
+        float subtrac(){
+            if(a>b)
+                return a-b;
+            else
+                return b-a;
+        }
+        float multiply(){
+            return a*b;
+        }
+        float devide(){
+            return a/b;
+        }
+
+
+
+};
+
+int main(){
+
+    float a,b;
+    cin>>a>>b;
+    Calc test1(a,b);
+
+    cout<<"Sum = "<<test1.add()<<"\n"<<"Difference = "<<test1.subtrac()<<"\n"<<"Multiple = "<<test1.multiply()<<"\n"<<"Division = "<<test1.devide()<<endl;
+    return 0;
+}
+
+
+
+
+
+
+Problem 2:
+Create a student class with attributes, char name, int id, char department, and 3 course-gpa and a constructor, and a method to calculate cgpa and print t on console along with his or her information.
+
+
+
+Code:
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Student{
+    private:
+        string name;
+        int id;
+        string dept;
+        float c1,c2,c3;
+    public:
+        Student(string Name, int Id, string Dept, float C1, float C2, float C3){
+            name=Name;
+            id=Id;
+            dept=Dept;
+            c1=C1;
+            c2=C2;
+            c3=C3;
+        }
+        float cgpaCalc(){
+            return (c1+c2+c3)/60;
+        }
+        void displayInfo(){
+            cout<<"Name = "<<name<<"\n"<<"ID = "<<id<<"\n"<<"Dept. = "<<dept<<"\n"<<"cgpa = "<<cgpaCalc()<<endl;
+
+        }
+};
+
+int main(){
+
+    string name;
+    int id;
+    string dept;
+    float c1,c2,c3;
+    cin>>name>>id>>dept>>c1>>c2>>c3;
+    Student students(name, id, dept, c1, c2, c3);
+    students.displayInfo();
+    return 0;
+}
+
+

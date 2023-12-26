@@ -1,0 +1,93 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class NumberSystem{
+	protected:
+		string num;
+
+	public:
+		void getInput(){
+		}
+
+		int count_char(){
+
+		}
+
+		void conversion_proccess(){
+
+		}
+
+		int conversion(){
+
+		}
+
+		void display(){
+
+		}
+
+};
+
+class BinToDec: public NumberSystem{
+	public:
+		public:
+		void getInput(){
+			cout<<"binary = ";
+			cin>>num;
+		}
+
+		int count_char(){
+			int count=0;
+			for(int i=0; ;i++){
+				if(num[i]=='\0') break;
+				count++; 
+			}
+			return count;
+		}
+
+
+		void binary_to_decimal_proccess(){
+			printf("proccess = ");
+			
+			int n = count_char();
+			for(int i=0; i<count_char();i++){
+				n--;
+				printf("%c*(2^%d)", num[i], n);
+				if(i<(count_char())-1)
+				printf("+");
+			}
+			printf("\n");
+		}
+
+		int binary_to_decimal(){
+		
+			binary_to_decimal_proccess();
+			
+			int sum=0;
+
+			int n = count_char();
+
+			for(int i=0; i<count_char();i++){
+				
+				n--;
+				
+				if(num[i]=='0') 
+				sum = sum + 0;
+				
+				else if(num[i]=='1') 
+				sum = sum + (1<<n);
+			}
+			return sum;
+		}
+
+		void display(){
+			printf("decimal = %d", binary_to_decimal());
+		}
+};
+
+int main() {
+    
+   
+
+    return 0;
+}

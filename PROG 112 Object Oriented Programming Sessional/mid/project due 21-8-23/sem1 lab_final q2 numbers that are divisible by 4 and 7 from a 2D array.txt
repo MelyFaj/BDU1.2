@@ -1,0 +1,18 @@
+/*
+Write a program to display the numbers that are divisible by 4 and 7 from a 2D array of integers and find the sum of those numbers as well
+*/
+#include<stdio.h>
+int main(){
+    int row=3, col=3, sum=0;
+    //scanf("%d%d", &row, &col);
+    int a[3][3]={{28,12,6},{18, 56, 10},{36,24,13}};
+    for(int i=0; i<row; i++){
+        for(int j=0; j<col; j++){
+            if(a[i][j]%4==0 && a[i][j]%7==0){
+                printf("%d\n", a[i][j]);
+                sum+=a[i][j];
+            }
+        }
+    }
+    printf("%d\n", sum);
+}

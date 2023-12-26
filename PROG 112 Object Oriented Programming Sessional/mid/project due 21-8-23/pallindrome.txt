@@ -1,0 +1,20 @@
+// check if a number is pallindrome or not
+#include <stdio.h>
+int main() {
+    int n, rev=0, rem, quot;
+    scanf("%d", &n);
+    rem = quot = n;
+    for(; rem>0; ){
+        rem = quot%10;
+        quot = quot/10;
+        rev = rev*10+rem;
+    }
+    rev/=10;
+    printf("%d\n", rev);
+    if(n==rev)
+        printf("It's a pallindrome\n");
+    else
+        printf("Not a pallindrome\n");
+            
+    return 0;
+}

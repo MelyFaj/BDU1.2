@@ -1,0 +1,884 @@
+#include <iostream>
+#include <vector>
+#include<cmath>
+#include <string>
+#include <ctype.h>
+#include <windows.h>
+#include <bits/stdc++.h>
+#define sleep(x)Sleep(x*1000)
+#define PI 3.141592654
+using namespace std;
+class arithmetic{
+private:
+    vector<float> numbers;
+    double a;
+public:
+    void getdata(){
+    char choice;
+    cout << "For final result enter '='" << endl;
+    cout << endl;
+    cout << "Enter numbers and operations: " << endl;
+    while (choice != '=') {
+        float num;
+        cin >> num;
+        addNumber(num);
+        cin >> choice;
+    }
+    }
+    void addNumber(float num) {
+        numbers.push_back(num);
+    }
+
+    void sumNumbers() {
+        float sum = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            sum += numbers[i];
+        }
+        cout << "Sum of the entered numbers: " << sum << endl;
+    }
+    void subtractNumbers() {
+        float result = numbers[0];
+        for (int i = 1; i < numbers.size(); i++) {
+            result -= numbers[i];
+        }
+        cout << "Result of subtraction: " << result << endl;
+    }
+
+    void multiplyNumbers() {
+        float result = 1;
+        for (int i = 0; i < numbers.size(); i++) {
+            result *= numbers[i];
+        }
+        cout << "Result of multiplication: " << result << endl;
+    }
+
+    void divideNumbers() {
+        float result = numbers[0];
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers[i] == 0) {
+                cout << "Error: Division by zero!" << endl;
+                return;
+            }
+            result /= numbers[i];
+        }
+        cout << "Result of division: " << result << endl;
+    }
+};
+class Matrix {
+private:
+    vector<vector<double>> data;
+
+public:
+    Matrix(int rows, int cols) : data(rows, vector<double>(cols)) {}
+
+    void setData() {
+        cout << "Enter matrix elements:" << endl;
+        for (int i = 0; i < data.size(); i++) {
+            for (int j = 0; j < data[i].size(); j++) {
+                cin >> data[i][j];
+            }
+        }
+    }
+
+    Matrix operator+(const Matrix& other) const {
+        if (data.size() != other.data.size() || data[0].size() != other.data[0].size()) {
+            throw runtime_error("Matrix dimensions don't match for addition");
+        }
+
+        Matrix result(data.size(), data[0].size());
+
+        for (int i = 0; i < data.size(); i++) {
+            for (int j = 0; j < data[i].size(); j++) {
+                result.data[i][j] = data[i][j] + other.data[i][j];
+            }
+        }
+
+        return result;
+    }
+
+    Matrix operator*(const Matrix& other) const {
+        if (data[0].size() != other.data.size()) {
+            throw runtime_error("Matrix dimensions don't match for multiplication");
+        }
+
+        Matrix result(data.size(), other.data[0].size());
+
+        for (int i = 0; i < data.size(); i++) {
+            for (int j = 0; j < other.data[0].size(); j++) {
+                double sum = 0;
+                for (int k = 0; k < data[0].size(); k++) {
+                    sum += data[i][k] * other.data[k][j];
+                }
+                result.data[i][j] = sum;
+            }
+        }
+        return result;
+    }
+
+    void print() const {
+        for (const auto& row : data) {
+            for (const double element : row) {
+                cout << element << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+class Arith : public arithmetic{
+public:
+
+     Arith(){
+    int operation;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> operation;
+    switch (operation) {
+        case 1:
+            {getdata();
+            sumNumbers();
+            break;}
+        case 2:
+            {getdata();
+            subtractNumbers();
+            break;}
+        case 3:
+            {getdata();
+            multiplyNumbers();
+            break;}
+        case 4:
+            {getdata();
+            divideNumbers();
+            break;}
+    }
+}
+};
+class trigonometric{
+private :
+    double n,n1,result;
+    long long n2,n3;
+protected:
+    void get_angle(){
+    cout << "Enter angle in degrees : ";
+    cin >> n1;
+    }
+   /* void get_value(){
+    cout << "Enter number : ";
+    cin >> ang;
+    }*/
+    void COS(){
+       double x = n1 * PI/180;
+       result = cos(n1);;
+    cout <<" cos(" << n1 << ") = " << result << endl;
+    }
+    void SIN(){
+       double x = n1 * PI/180;
+       result = sin(x);;
+    cout <<" sin(" << n1 << ") = " << result << endl;
+    }
+    void TAN(){
+    if(n1 ==90 || n1 ==270 || n1 ==450){
+    printf("\nMath error!\n");}
+    else{
+       double x = n1 * PI/180;
+       result = tan(x);;
+    cout <<" tan(" << n1 << ") = " << result << endl;
+    }
+    }
+    void arc_COS(){
+         if(n1>1 || n1<-1){ // Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        result = acos(n1);
+        double x=180/PI;
+    cout <<" cos^-1(" << n1 << ") = " << result * x << endl;}
+    }
+    void arc_SIN(){
+        if(n1>1 || n1<-1){// Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        result = asin(n1);
+        double x=180/PI;
+    cout <<"sin^-1(" << n1 << ") = " << result * x << endl;}
+    }
+    void arc_TAN(){
+         if(n1>1 || n1<-1){ // Parameter not in Range
+        cout << "Math Error!!" <<endl;}
+    else{
+        result = atan(n1);
+        double x=180/PI;
+    cout <<"tan^-1(" << n1 << ") = " << result * x << endl;}
+    }
+    long long fact_return(long long n){
+    long long f=1;
+    for(int i=1; i<=n; i++){
+        f=f*i;
+    }
+    return f;
+}
+
+public:
+    void get_value(){
+    cout << "Enter number : ";
+    cin >> n1;
+    }
+    void squareRoot(){
+    double result=sqrt(n1);
+    cout << "Square root of " << n1 << " is : " << result << endl;
+    }
+    void CubeRoot(){
+    result=cbrt(n1);
+    cout << "Cube root of " << n1 << " is : " << result << endl;
+    }
+    void LOG_base(){
+    if(n1 > 0){
+    result = log10(n1);
+    cout << "log("<< n1 <<") = "<< result << endl;}
+    else{
+      cout << "Math Error! " << endl;
+    }
+}
+void npr(){
+    cout << "Enter n :";
+    cin >> n2;
+    cout << "Enter r :";
+    cin >> n3;
+    long long per = fact_return(n2) / fact_return(n2-n3);
+    cout << "\nnPr = " << per << endl;
+
+}
+void ncr(){
+    cout << "Enter n :";
+    cin >> n2;
+    cout << "Enter r :";
+    cin >> n3;
+    long long comb = fact_return(n2) / (fact_return(n3) * fact_return(n2-n3));
+    cout << "\nnCr = " << comb << endl;
+
+}
+void power(){
+    cout << "Enter base :";
+    cin >> n1;
+    cout << "Enter power :";
+    cin >> n;
+    result = pow(n1,n);
+    cout << "\n(" << n1 <<")^" << n <<" = " << result << endl;
+
+}
+
+};
+class Trigono : public trigonometric{
+public:
+    Trigono(){
+    int b;
+    cout << "1. Sine" << endl;
+    cout << "2. Cosine" << endl;
+    cout << "3. Tangent" << endl;
+    cout << "4. Sine Inverse" << endl;
+    cout << "5. Cosine Inverse" << endl;
+    cout << "6. Tangent Inverse" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> b;
+    switch(b){
+    case 1:{
+         get_angle();
+         SIN();
+        break;}
+     case 2:{
+        get_angle();
+        COS();
+        break;}
+     case 3:{
+        get_angle();
+        TAN();
+        break;}
+     case 4:{
+        get_value();
+        arc_SIN();
+        break;}
+     case 5:{
+        get_value();
+        arc_COS();
+        break;}
+     case 6:{
+       get_value();
+       arc_TAN();
+        break;}
+     default:
+        cout << "Invalid Choice !"<< endl;
+        break;
+    }
+}
+
+};
+
+class Cryptography{
+
+		char message[101];
+		short int key;
+
+	public:
+		Cryptography(){
+			int b;
+			cout << "1. Encrypt" << endl;
+			cout << "2. Decrypt" << endl;
+			cout << "Type the initial number of your selection:";
+			cin >> b;
+			switch(b){
+			case 1:{
+				encrypt();
+				break;}
+			case 2:{
+				decrypt();
+				break;}
+			default:
+				cout << "Invalid Choice !"<< endl;
+				break;
+			}
+		}
+		void encrypt(){
+			printf("Enter non-spaced-msg<ENTER>integer key\n---------------------------------------\n");
+			scanf(" %[^\n]s", message);
+			scanf("%hd", &key);
+
+			for(int i=0; message[i]!='\0'; i++){
+				//if u also wish to encrypt the space then comment this & the below 'if' out
+				if(message[i]==' ' && message[i+1]!='\0') i++;
+				if(message[i]>=97)
+					message[i] = ((((message[i]%97)+key)%26)+97-32);
+				else if(message[i]<97)
+					message[i] = ((((message[i]%65)+key)%26)+97-32);
+			}
+
+			printf("Encrypted: %s\n", message);
+		}
+
+		void decrypt(){
+			printf("Enter non-spaced-msg<ENTER>integer key\n---------------------------------------\n");
+			scanf(" %[^\n]s", message);
+			scanf("%hd", &key);
+			for(int i=0; message[i]!='\0'; i++){
+				message[i]=toupper(message[i]);
+				//if u also wish to encrypt the space then comment this and the above 'if' out
+				if(message[i]==' ' && message[i+1]!='\0') i++;
+				if(((message[i]%65)-key)<0)
+					message[i] = (((message[i]%65)-key)+26)+97;
+				else if(((message[i]%65)-key)>=0)
+					message[i] = ((message[i]%65)-key)+97;
+			}
+			printf("Decrypted: %s\n", message);
+		}
+};
+
+
+class NumberSystem{
+	protected:
+		string num;
+
+	public:
+
+		NumberSystem(){
+			int b;
+			cout << "1. Binary to Decimal" << endl;
+			cout << "2. Decimal to Binary" << endl;
+			cout << "3. Decimal to Octal" << endl;
+			cout << "4. Decimal to Hexadecimal" << endl;
+			cout << "5. Octal to Binary" << endl;
+			cout << "6. Hexadecimal to Binary" << endl;
+			cout << "7. Octal to Hexadecimal" << endl;
+			cout << "8. Hexadecimal to Octal" << endl;
+			cout << "9. Binary to Hexadecimal" << endl;
+			cout << "10. Binary to Octal" << endl;
+			cout << "Type the initial number of your selection:";
+			cin >> b;
+			switch(b){
+			case 1:{
+				BinToDec();
+				break;}
+			case 2:{
+				DecToBin();
+				break;}
+			case 3:{
+				DecToOc();
+				break;}
+			case 4:{
+				DecToHex();
+				break;}
+			case 5:{
+				OcToBin();
+				break;}
+			case 6:{
+				HexToBin();
+				break;}
+			case 7:{
+				OcToHex();
+				break;}
+			case 8:{
+				HexToOc();
+				break;}
+			case 9:{
+				BinToHex();
+				break;}
+			case 10:{
+				BinToOc();
+				break;}
+			default:
+				cout << "Invalid Choice !"<< endl;
+				break;
+			}
+		}
+
+		void BinToDec(){
+			string b;
+			cout<<"Binary: ";
+			cin>>b;
+			int d = stoi(b, nullptr, 2);
+			cout<<"Decimal: "<<d;
+		}
+
+		void DecToBin(){
+			int num;
+			cout<<"Decimal = ";
+			cin>>num;
+			string s;
+			int count=0;
+
+			for(int i=num; i>0; i/=2){
+				if(i%2)
+					s+='1';
+				else if(!(i%2) && i!=0)
+					s+='0';
+				count++;
+			}
+            
+            cout<<"Binary: ";
+			for(int i=count; i>=0; i--)
+				cout<<s[i];
+		}
+
+        void DecToOc(){
+            int n;
+            cout<<"Decimal: ";
+            cin>>n;
+            cout<<"Octal: ";
+            cout << oct << n;
+        }
+
+        void DecToHex(){
+            int n ;
+            cout<<"Decimal: ";
+            cin>>n;
+            cout<<"Hexadecimal: ";
+            cout << hex << n;
+        }
+
+        void OcToDec(){
+            string o;
+            cout<<"Octal: ";
+			cin>>o;
+			int d = stoi(o, nullptr, 8);
+			cout<<"Decimal: "<<d;
+        }
+
+        void HexToDec(){
+            string h;
+            cout<<"Hexadecimal: ";
+			cin>>h;
+			int d = stoi(h, nullptr, 16);
+			cout<<"Decimal: "<<d;
+        }
+
+        void OcToBin() {
+            string octal;
+            cout<<"Octal: ";
+			cin>>octal;
+			int d = stoi(octal, nullptr, 8);
+
+			string s;
+			int count=0;
+
+			for(int i=d; i>0; i/=2){
+				if(i%2)
+					s+='1';
+				else if(!(i%2) && i!=0)
+					s+='0';
+				count++;
+			}
+            
+            cout<<"Binary: ";
+			for(int i=count; i>=0; i--)
+				cout<<s[i];
+        }
+
+        void HexToBin()
+        {
+            string hex;
+            cout<<"Hexadecimal: ";
+			cin>>hex;
+            string result = bitset<16>(stoul(hex, nullptr, 16)).to_string();
+            cout<<"Binary: "<< result;
+        }
+
+        void OcToHex(){
+            string o;
+            cout<<"Octal: ";
+			cin>>o;
+			int d = stoi(o, nullptr, 8);
+            cout<<"Hexadecimal: ";
+            cout << hex << d;
+        }
+
+        void HexToOc(){
+            string h;
+            cout<<"Hexadecimal: ";
+			cin>>h;
+			int d = stoi(h, nullptr, 16);
+            cout<<"Octal: ";
+            cout << oct << d;
+        }
+
+        void BinToHex(){
+            string b;
+            cout<<"Binary: ";
+			cin>>b;
+			int d = stoi(b, nullptr, 2);
+            cout<<"Hexadecimal: ";
+            cout << hex << d;
+        }
+
+        void BinToOc(){
+            string b;
+            cout<<"Binary: ";
+			cin>>b;
+			int d = stoi(b, nullptr, 2);
+            cout<<"Octal: ";
+            cout << oct << d;
+        }
+
+};
+class ComplexNumber {
+private:
+    double real;
+    double imaginary;
+
+public:
+    ComplexNumber(double r = 0, double i = 0) : real(r), imaginary(i) {}
+
+    ComplexNumber operator+(const ComplexNumber& other) const {
+        return ComplexNumber(real + other.real, imaginary + other.imaginary);
+    }
+
+    ComplexNumber operator-(const ComplexNumber& other) const {
+        return ComplexNumber(real - other.real, imaginary - other.imaginary);
+    }
+
+    ComplexNumber operator*(const ComplexNumber& other) const {
+        double newReal = real * other.real - imaginary * other.imaginary;
+        double newImaginary = real * other.imaginary + imaginary * other.real;
+        return ComplexNumber(newReal, newImaginary);
+    }
+
+    void display() const {
+        cout << real;
+        if (imaginary >= 0) {
+            cout << " + " << imaginary << "i";
+        } else {
+            cout << " - " << -imaginary << "i";
+        }
+    }
+};
+
+class ComplexCalculator {
+    // ... Existing ComplexCalculator class code ...
+};
+
+class ComplexArith : public ComplexCalculator, public arithmetic {
+    // ... Existing ComplexArith class code ...
+};
+
+
+void BitWiseOper(){
+    int operation,j,n;
+    char s[5];
+    printf("enter operation:\n '1' for Shifting,\n '2' for Adding,\n '3' for Removing,\n '4' Checking,\n '5' for Toggling,\n '6' for finding LSB (least significant bit)\n '7' for finding MSB (most significant bit)\n");
+    printf("Enter: ");
+    scanf("%d", &operation);
+    if(operation==1){
+        printf("To Left shift, , input format: 'your number' << '#rooms'\nTo Right shift, , input format: 'your number' >> '#rooms'\n"); 
+    scanf(" %d%[<> ]%d",&n, s, &j);
+    if(s[0]=='<' & s[1]=='<' || s[1]=='<' & s[2]=='<')
+        printf("%d\n", n<<j);
+    else if(s[0]=='>' & s[1]=='>' || s[1]=='>' & s[2]=='>')
+        printf("%d\n", n>>j);
+    else
+         printf("Invalid!");
+    
+    
+    }
+
+    else if(operation==2){
+        printf("Enter the number & the position of which bit to add(from right to left, starts at 0):\n");
+        scanf("%d%d", &n, &j);
+        printf("%d\n", n|(1<<(j)));
+    }
+    else if(operation==3){
+        printf("Enter the number & the position of which bit to remove(from right to left, starts at 0):\n");
+        scanf("%d%d", &n, &j);
+        printf("%d\n", n&(~(1<<(j))));
+    }
+
+    else if(operation==4){
+        printf("Enter the number & the position of which bit to check(from right to left, starts at 0):\n");
+        scanf("%d%d", &n, &j);
+        printf("%d\n", n&(1<<(j)));
+    }
+
+    else if(operation==5){
+        printf("Enter the number & the position of which bit to toggle(from right to left, starts at 0):\n");
+        scanf("%d%d", &n, &j);
+        printf("%d\n", n^(1<<(j)));
+    }
+
+    else if(operation==6){
+        printf("Enter the number: ");
+        scanf("%d", &n);
+        printf("%d\n", n&(-n));
+    }
+    else if(operation==7){
+        long int n, msb;
+        printf("Enter the number: ");
+        scanf("%ld", &n);
+        msb = 1<<((int)(log(n)/log(2)));
+        printf("%d", msb);
+    }
+    else
+     printf("Invalid!");
+
+}
+
+void prime(){
+    int n;
+    cout<<"Enter 0 to break out.\n";
+    while(1){
+    cout<<"Enter number: ";
+    scanf(" %d", &n);
+    if(n==0) break;
+    else if(n==1)
+        printf("Not Prime.\n");
+    else if(n==2)
+        printf("Prime!\n");
+    for(int i=2; i<n; i++){
+        if((n/i)<i && n%i!=0){
+            printf("Prime!\n");
+            break;
+        }
+        else if(n%i==0){
+            printf("Not Prime. The least divisor: %d\n", i);
+            break;
+        }
+    }
+    }
+}
+
+int main() {
+    trigonometric c;
+    int f=1;
+    cout <<"\t\t**SCIENTIFIC CALCULATOR**\n\n" << endl;
+    while(f!=0){
+    int choice;
+
+    sleep(1);
+    cout << "\n\n0- !EXIT!\n" << endl;
+    cout << "1- ARITHMETIC CALCULATIONS\n" << endl;
+    cout << "2- TRIGONOMETRIC FUNCTIONS\n" << endl;
+    cout << "3- Permutation (nPr)\n" << endl;
+    cout << "4- Combination (nCr)\n" << endl;
+    cout << "5- Power function\n" << endl;
+    cout << "6- log(base 10)\n" << endl;
+    cout << "7- Square Root\n" << endl;
+    cout << "8- Cube Root\n" << endl;
+	cout << "9- CRYPTOGRAPHY\n" << endl;
+	cout << "10- Number conversion\n" << endl;
+	cout << "11- Matrix Addition\n" << endl;
+    cout << "12- Matrix Multiplication\n" << endl;
+    cout << "13- Complex Number Addition\n" << endl;
+    cout << "14- Complex Number Subtraction\n" << endl;
+    cout << "15- Complex Number Multiplication\n" << endl;
+    cout << "16- Bit-wise Operations\n" << endl;
+    cout << "17- Is-it-Prime?\n" << endl;
+    cout << "Type the initial number of your selection:";
+    cin >> choice;
+    switch(choice){
+    case 0:{
+     f=0;
+     break;
+    }
+    case 1:{
+       Arith s;
+       break;}
+    case 2:{
+     Trigono t;
+     break;}
+     case 3:{
+      c.npr();
+     break;}
+     case 4:{
+      c.ncr();
+     break;}
+     case 5:{
+      c.power();
+     break;}
+     case 6:{
+      c.get_value();
+      c.LOG_base();
+     break;}
+     case 7:{
+      c.get_value();
+      c.squareRoot();
+     break;}
+     case 8:{
+     c.get_value();
+     c.CubeRoot();
+     break;}
+	 case 9:{
+     Cryptography c;
+     break;}
+	 case 10:{
+     NumberSystem n;
+     break;}
+      case 11: {
+            int rows, cols;
+            cout << "Enter number of rows and columns for matrices:" << endl;
+            cin >> rows >> cols;
+
+            Matrix mat1(rows, cols);
+            Matrix mat2(rows, cols);
+
+            cout << "Enter elements for Matrix 1:" << endl;
+            mat1.setData();
+
+            cout << "Enter elements for Matrix 2:" << endl;
+            mat2.setData();
+
+            cout << "Matrix 1:" << endl;
+            mat1.print();
+
+            cout << "Matrix 2:" << endl;
+            mat2.print();
+
+            try {
+                Matrix result = mat1 + mat2;
+                cout << "Result of Matrix Addition:" << endl;
+                result.print();
+            } catch (const runtime_error& e) {
+                cout << e.what() << endl;
+            }
+
+            break;
+        }
+
+        case 12: {
+            int rows1, cols1, rows2, cols2;
+            cout << "Enter number of rows and columns for Matrix 1:" << endl;
+            cin >> rows1 >> cols1;
+
+            cout << "Enter number of rows and columns for Matrix 2:" << endl;
+            cin >> rows2 >> cols2;
+
+            Matrix mat1(rows1, cols1);
+            Matrix mat2(rows2, cols2);
+
+            cout << "Enter elements for Matrix 1:" << endl;
+            mat1.setData();
+
+            cout << "Enter elements for Matrix 2:" << endl;
+            mat2.setData();
+
+            cout << "Matrix 1:" << endl;
+            mat1.print();
+
+            cout << "Matrix 2:" << endl;
+            mat2.print();
+
+            try {
+                Matrix result = mat1 * mat2;
+                cout << "Result of Matrix Multiplication:" << endl;
+                result.print();
+            } catch (const runtime_error& e) {
+                cout << e.what() << endl;
+            }
+
+            break;
+        }
+        case 13: {
+            double real1, imag1, real2, imag2;
+            cout << "Enter real and imaginary parts of Complex Number 1:" << endl;
+            cin >> real1 >> imag1;
+            cout << "Enter real and imaginary parts of Complex Number 2:" << endl;
+            cin >> real2 >> imag2;
+
+            ComplexNumber num1(real1, imag1);
+            ComplexNumber num2(real2, imag2);
+
+            ComplexArith ca;
+            ComplexNumber result = num1 + num2;
+
+            cout << "Result of Complex Number Addition: ";
+            result.display();
+            cout << endl;
+            break;
+        }
+
+        case 14: {
+            double real1, imag1, real2, imag2;
+            cout << "Enter real and imaginary parts of Complex Number 1:" << endl;
+            cin >> real1 >> imag1;
+            cout << "Enter real and imaginary parts of Complex Number 2:" << endl;
+            cin >> real2 >> imag2;
+
+            ComplexNumber num1(real1, imag1);
+            ComplexNumber num2(real2, imag2);
+
+            ComplexArith ca;
+            ComplexNumber result = num1 - num2;
+
+            cout << "Result of Complex Number Subtraction: ";
+            result.display();
+            cout << endl;
+            break;
+        }
+        case 15: {
+            double real1, imag1, real2, imag2;
+            cout << "Enter real and imaginary parts of Complex Number 1:" << endl;
+            cin >> real1 >> imag1;
+            cout << "Enter real and imaginary parts of Complex Number 2:" << endl;
+            cin >> real2 >> imag2;
+
+            ComplexNumber num1(real1, imag1);
+            ComplexNumber num2(real2, imag2);
+
+            ComplexArith ca;
+            ComplexNumber result = num1 * num2;
+
+            cout << "Result of Complex Number Multiplication: ";
+            result.display();
+            cout << endl;
+            break;
+        }
+        case 16:{
+        BitWiseOper();
+        break;}
+        case 17:{
+        prime();
+        break;}
+     default:
+     cout << "Invalid Choice !"<< endl;
+     break;
+     }
+    }
+    return 0;
+}
+

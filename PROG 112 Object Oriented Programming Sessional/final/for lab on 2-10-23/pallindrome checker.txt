@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <string.h>
+
+
+int main() {
+    char s[101];
+    scanf("%s", s);
+    int n = strlen(s), flag=0;
+    for(int i=0; i<=n/2; i++){
+        if(s[i]!=s[n-1-i])
+            flag=1;
+    }
+    if(!flag)
+        printf("Pallindrome!");
+    else if(flag)
+        printf("Not a Pallindrome!");
+    return 0;
+}

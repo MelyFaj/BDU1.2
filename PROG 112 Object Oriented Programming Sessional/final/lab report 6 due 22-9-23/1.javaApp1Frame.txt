@@ -1,0 +1,15 @@
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+public class JavaApplication1Frame extends JFrame {
+
+    public void init(){
+        setTitle("Salam!");
+        setSize(450, 300);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    
+    
+}

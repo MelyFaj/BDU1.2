@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+
+class Rectangle{
+    private:
+        double w;
+        double l;
+    public:
+        Rectangle(){
+            w=1.0;
+            l=1.0;
+        };
+    public:
+        Rectangle(double width, double length){
+            w = width;
+            l = length;
+        }
+    public:
+        double area(){
+            return w*l;
+        }
+    public:
+        double perimeter(){
+            return 2*(w+l);
+        }
+};
+
+int main(){
+    double w1,l1, w2,l2, w3,l3;
+
+    cout<<"Enter width and length for the first rectangle: ";
+    cin>>w1>>l1;
+    cout<<"Enter width and length for the second rectangle: ";
+    cin>>w2>>l2;
+    cout<<"Enter width and length for the third rectangle: ";
+    cin>>w3>>l3;
+    Rectangle r[3] = {Rectangle(w1,l1), Rectangle(w2,l2), Rectangle(w3,l3)};
+;
+    cout<<"Area of Rec1 = "<<r[0].area()<<endl;
+    cout<<"Area of Rec2 = "<<r[1].area()<<endl;
+    cout<<"Area of Rec3 = "<<r[2].area()<<endl;
+    cout<<"Perimeter of Rec1 = "<<r[0].perimeter()<<endl;
+    cout<<"Perimeter of Rec2 = "<<r[1].perimeter()<<endl;
+    cout<<"Perimeter of Rec3 = "<<r[2].perimeter()<<endl;
+    return 0;
+}
