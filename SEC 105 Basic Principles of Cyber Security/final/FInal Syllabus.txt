@@ -1,0 +1,58 @@
+Chapter 6: 
+
+6.1 Types of malicious software
+6.2 APT
+Virus classification
+State of Worm Technology
+Clicjacking
+6.5 Propagation
+6.7
+
+Chapter 7
+
+7.1
+Figure 7.1 Example Network to Illustrate DoS Attacks
+ FIg 7.3 TCP SYN SpoofingAttack
+
+7.2  Flooding Attacks (ICMP Flood,UDP Flood,TCP SYN Flood)
+7.3 Distributed denial-of-Service Attacks
+Figure 7.4 DDoS Attack Architecture
+
+Chapter 8
+8.1 Types of Intruder
+8.3 components of IDS
+IDSs  classification
+Figure 8.2 Architecture for Distributed Intrusion Detection
+
+
+Chapter 10:
+
+10.1 Stack overflow
+Buffer overflow example (Sample code, example)
+10.2 Defending against buffer overflow
+
+Chapter 11:
+Figure 11.1 Abstract View of Program
+CWE/SANS Top 25 Most Dangerous Software Errors list (any 10)
+
+Chapter 12
+12.3 Operating Systems Hardening
+12.4 Application Security
+12.5 Security Maintenance
+
+Chapter 14
+
+Table 14.1 ISO/IEC 27000 Series of Standards on IT Security Techniques
+Figure 14.1 Overview of IT Security Management
+Figure 14.2 The Plan-Do-Check-Act Process Model
+Figure 14.3 Risk Assessment Process
+Risk Treatment method (4 method)
+
+Chapter 17
+A Learning Continuum
+Security in the Hiring Process
+
+Chapter 18
+
+Security audit
+Audit tail
