@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_NODES 100
+
+void dfs(int node, int num_nodes, int **adj_list, int *visited) {
+    visited[node] = 1;
+    for (int i = 0; i < num_nodes; i++) {
+        if (adj_list[node][i] && !visited[i]) {
+            dfs(i, num_nodes, adj_list, visited);
+        }
+    }
+}
+
+int count_connected_components(int num_nodes, int **adj_list, int *visited) {
+    int count = 0;
+    for (int i = 0; i < num_nodes; i++) {
+        if (!visited[i]) {
+            dfs(i, num_nodes, adj_list, visited);
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int num_edges;
+    int num_nodes;
+    printf("Enter number of nodes and number of edges: ");
+    scanf("%d %d", &num_nodes, &num_edges);
+    
+    int visited[MAX_NODES];
+    int adj_list[MAX_NODES][MAX_NODES];
+
+    for (int i = 0; i < num_edges; i++) {
+        int u, v;
+        printf("Enter start and end of an edge: ");
+        scanf("%d %d", &u, &v);
+        adj_list[u][v] = adj_list[v][u] = 1;
+    }
+
+    printf("Number of connected components: %d\n", count_connected_components(num_nodes, adj_list, visited));
+    return 0;
+}

@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+
+
+int top = -1;
+int push(int *a, int n, int el){
+    if(top==n-1){
+        printf("Overflow!\n");
+        return -1;
+    }
+    a[++top]=el;
+    return 0;
+}
+
+int pop(int *a){
+    if(top==-1){
+        return -1;
+    }
+    top--;
+    return a[top+1];
+}
+
+int peek(int *a){
+    if(top==-1){
+        printf("Empty stack\n");
+        return -1;
+    }
+    return a[top];
+}
+
+bool isFull(int n){
+    if(top==n-1){
+        return true;
+    }
+    return false;
+}
+
+bool isEmpty(){
+    if(top==-1){
+        return true;
+    }
+    return false;
+}
+
+void display(int a[]){
+    printf("Your stack:\n");
+    for(int i=top; i>-1; i--){
+        printf("%d\n", a[i]);
+    }
+}
+
+
+int char_to_int(char a[]){
+    int b[10],i,j,sum=0, mul=1;
+    for(i=strlen(a)-1; i>=0; i--){
+        b[i]=(a[i]-'0')*mul;
+        mul*=10;
+    }
+    for(j=0; j<strlen(a); j++){
+        sum+=b[j];
+    }
+
+    return sum;
+}
+
+int main(){
+    char c[101];
+    int a[101], op1, op2;
+    int num=0;
+    
+    for(int i=0; ; i++){
+        scanf("%c", &c[i]);
+        if(c[i]=='\n') break;
+        if(c[i]!=' ' && c[i]!='+' && c[i]!='-' && c[i]!='*' && c[i]!='/' && c[i]!='^'){
+            num=(num*10)+(int)(c[i]-'0');
+
+            
+        }
+        else if(c[i]==' ' && c[i-1]!='+' && c[i-1]!='-' && c[i-1]!='*' && c[i-1]!='/' && c[i-1]!='^'){
+            push(a, 101, num);
+            num=0;
+        }
+        else if(c[i]=='+' || c[i]=='-' || c[i]=='*' || c[i]=='/' || c[i]=='^'){
+            op2=pop(a);
+            op1=pop(a);
+            if(c[i]=='+')
+                push(a, 101, op1+op2);
+            else if(c[i]=='-')
+                push(a, 101, op1-op2);
+            else if(c[i]=='*')
+                push(a, 101, op1*op2);
+            else if(c[i]=='/')
+                push(a, 101, op1/op2);
+            else if(c[i]=='^')
+                push(a, 101, op1^op2);
+        }
+    }
+
+    printf("%d\n", pop(a));
+    return 0;
+}

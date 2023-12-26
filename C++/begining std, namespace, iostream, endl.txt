@@ -1,0 +1,22 @@
+#include<iostream>
+//using namespace std;   //you could use instesd of this  'std::' at the begining iof cin and cout
+int main(){
+    std::cout<<"Welcome to C++!\n";
+    std::cout<<"Welcome to C++!"<<std::endl;  //<<std::endl == "\n"
+    return 0;
+}
+
+
+
+///////////////////////////////////////////////////////////////
+#include<iostream>
+
+int main(){
+    int x,y;
+    std::cin>>x>>y;
+    std::cout<<"x + y = "<< x+y<<std::endl;
+    return 0;
+}
+
+
+////////////////////////////////////////////////////////////////

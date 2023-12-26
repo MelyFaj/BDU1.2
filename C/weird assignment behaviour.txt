@@ -1,0 +1,9 @@
+#include <stdio.h>
+
+int main()
+{
+    int a=(4,a);//a holds garbage value
+    printf("%d\n", a);
+
+    return 0;
+}

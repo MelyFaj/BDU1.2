@@ -1,0 +1,113 @@
+//UNDER TRIAL!!!!!!!!!!!!!!!!!
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+void bubble_sort(int *a, int n){
+    int flag = 0;
+    for(int i=0; i<n-1; i++){
+        flag=0;
+        for(int j=0; j<n-1-i; j++){
+            if(a[j]>a[j+1]){
+                flag=1;
+                int tmp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = tmp;
+            }
+        }
+        if(!flag){
+            break;
+        }
+    }
+}
+void selection_sort(int *a, int n){
+    int min, min_pos,max,max_pos;
+    for(int j=0; j<n-1-j; j++){
+            min = a[j];
+            max = a[j];
+        for(int i=j; i<n-j; i++){
+            if(min>a[i]){
+                min = a[i];
+                min_pos = i;
+
+            }
+            if(max<a[i]){
+                max=a[i];
+                max_pos=i;
+
+            }
+        }
+        int tmp = a[j];
+        a[j] = a[min_pos];
+        a[min_pos] = tmp;
+
+        if(a[min_pos]==max){
+            tmp = a[n-j-1];
+            a[n-j-1] = a[min_pos];
+            a[min_pos] = tmp;
+        }
+
+        else{
+            tmp = a[n-j-1];
+            a[n-j-1] = a[max_pos];
+            a[max_pos] = tmp;
+        }
+    }
+}
+void insertion_sort(int *a, int n){
+    int key, i, j;
+    for(i=1; i<n; i++){
+        key = a[i];
+        for(j=i-1; j>=0 && key<a[j]; j--){
+            a[j+1]=a[j];
+        }
+        a[j+1]=key;
+    }
+}
+int main() {
+    srand(time(NULL));
+    struct timespec start_time, end_time;
+    int n, s;
+    double sum_bubble=0, sum_selection=0, sum_insertion=0;
+    scanf("%d", &n);
+    printf("Enter %d array sizes: ", n);
+    for(int i=0; i<n; i++){
+        scanf("%d", &s);
+        int a[s];
+        for(int j=0; j<s; j++){
+            a[j] = rand()%100;
+        }
+
+        for(int j=0; j<s; j++){
+            printf("%d ", a[j]);
+        }
+
+
+        clock_gettime(CLOCK_MONOTONIC, &start_time);
+        bubble_sort(a,n);
+        clock_gettime(CLOCK_MONOTONIC, &end_time);
+        double elapsed_time = (end_time.tv_sec - start_time.tv_sec) * 1e9 + (end_time.tv_nsec - start_time.tv_nsec);
+        sum_bubble+=elapsed_time;
+
+
+        clock_gettime(CLOCK_MONOTONIC, &start_time);
+        selection_sort(a,n);
+        clock_gettime(CLOCK_MONOTONIC, &end_time);
+        elapsed_time = (end_time.tv_sec - start_time.tv_sec) * 1e9 + (end_time.tv_nsec - start_time.tv_nsec);
+        sum_selection+=elapsed_time;
+
+
+        clock_gettime(CLOCK_MONOTONIC, &start_time);
+        insertion_sort(a,n);
+        clock_gettime(CLOCK_MONOTONIC, &end_time);
+        elapsed_time = (end_time.tv_sec - start_time.tv_sec) * 1e9 + (end_time.tv_nsec - start_time.tv_nsec);
+        sum_insertion+=elapsed_time;
+
+        }
+
+
+        printf("Average execution time for Bubble sort: %f\nAverage execution time for Selection sort: %f\nAverage execution time for Insertion sort: %f\n", sum_bubble/n, sum_selection/n, sum_insertion/n);
+
+
+    return 0;
+}

@@ -1,0 +1,10 @@
+#activities = n
+start time = si
+end time = fi
+
+
+conflicting activities = if a start time falls into some other activitys finish time
+
+[ sj>=si && sj<=fi ]
+
+choose max #activity

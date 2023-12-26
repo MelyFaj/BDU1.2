@@ -1,0 +1,52 @@
+/*
+Suppose you are given a sorted linked list. Take input from the user and insert it into the 
+linked list maintaining the particular order.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+int main() {
+    int n,i;
+    printf("Initial number of elements: ");
+    scanf("%d", &n);
+    struct node a[n], *j, *k, input;
+    printf("Elements: ");
+    for(i=0; i<n; i++){
+        scanf("%d", &a[i].data);
+        if(i>0){
+            a[i-1].next=&a[i];
+        }
+    }
+    a[i-1].next=NULL;
+    printf("Data to be inserted: ");
+    k=&a[0];
+    scanf("%d", &input.data);
+    for(j=k; j!=NULL; j=j->next){
+        if(input.data>=j->data && input.data<=j->next->data){
+            input.next=j->next;
+            j->next=&input;
+            break;  
+        }
+        else if(input.data<a[0].data){
+            input.next=k;
+            k=&input;
+            break;  
+        }
+        else if(input.data>a[n-1].data){
+            a[n-1].next=&input;
+            input.next=NULL;
+            break;  
+        }
+    }
+    printf("Final list: ");
+    for(j=k; j!=NULL; j=j->next){
+        printf("%d ", j->data);
+    }
+    return 0;
+}

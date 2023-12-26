@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+void bubble_sort(int *arr, int *index, int n){
+    for(int i=0; i<n-1; i++){
+        for(int j=0; j<n-1-i; j++){
+            if(index[j]>index[j+1]){
+                int tmp1 = arr[j];
+                 arr[j] = arr[j+1];
+                 arr[j+1] = tmp1;
+                 int tmp2 = index[j];
+                 index[j] = index[j+1];
+                 index[j+1] = tmp2;
+            }
+        }
+    }
+}
+
+void print_array(int *a, int *indx, int n){
+    printf("arr[] = [");
+    for(int i=0; i<n; i++){
+        if(i<n-1)
+            printf("%d, ", a[i]);
+        else
+            printf("%d", a[i]);
+    }
+    printf("]\n");
+    
+    printf("index[] = [");
+    for(int i=0; i<n; i++){
+        if(i<n-1)
+            printf("%d, ", indx[i]);
+        else
+            printf("%d", indx[i]);
+    }
+    printf("]\n");
+}
+
+int main() {
+    int arr1[]={10, 11, 12};
+    int index1[]={1, 0, 2};
+    
+    int arr2[]={50, 40, 70, 60, 90};
+    int index2[]={3, 0, 4, 1, 2};
+    
+    int n1=sizeof(arr1)/sizeof(arr1[0]);
+    int n2=sizeof(arr2)/sizeof(arr2[0]);
+    bubble_sort(arr1, index1, n1);
+    bubble_sort(arr2, index2, n2);
+
+    print_array(arr1, index1, n1);
+    print_array(arr2, index2, n2);
+
+
+    return 0;
+}

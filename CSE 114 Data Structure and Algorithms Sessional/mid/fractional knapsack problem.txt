@@ -1,0 +1,44 @@
+knapsack==where you can carry/ bag
+
+maximizing value not weight
+
++
+will not exceed weight limit
+
+
+MAthematical def.:
+
+#items = n
+weight = wi (i=1,2,3,...n)
+value = pi (i=1,2,3,...n)
+bag-capacity = m
+fraction part of an item = xi (i=1,2,3,...n) (0<=xi<=1)
+GOAL: maximizing profit or value, (summation)pi*xi
+SUBJECT to: (summation)wi*xi <= m
+
+
+ex.:
+______
+given,
+n=3
+m=20
+(p1,p2,p3)=(25,24,15)
+(w1,w2,w3)=(18,15,10)
+
+feasible solution:
+	x1	x2	x3	SUM wixi	SUM pixi
+
+1.	1/2	1/3	1/4	16.5		24.25
+2.	1	2/15	0	20		28.2  //greedy but not optimal
+3.	0	2/3	1	20		31
+4.	0	1	1/2	20		31.5
+
+
+
+#1. a[] = pi/wi
+#2. sort a[] in decending order
+#3. put in knapsack
+
+
+
+

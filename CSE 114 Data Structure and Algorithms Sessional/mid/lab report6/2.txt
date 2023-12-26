@@ -1,0 +1,50 @@
+/*
+Suppose you are given a sorted linked list. Take input from the user. If the input matches with 
+any item on the list, delete it otherwise print the item not found.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+int main() {
+    int n,i, input,flag=0;
+    printf("Initial number of elements: ");
+    scanf("%d", &n);
+    struct node a[n], *j, *k;
+    printf("Elements: ");
+    for(i=0; i<n; i++){
+        scanf("%d", &a[i].data);
+        if(i>0){
+            a[i-1].next=&a[i];
+        }
+    }
+    a[i-1].next=NULL;
+    printf("Data to be deleted: ");
+    k=&a[0];
+    scanf("%d", &input);
+    for(j=k; j->next!=NULL; j=j->next){
+        if(input==j->next->data){
+            j->next=j->next->next;
+            flag=1;
+            break;  
+        } 
+        else if(input==a[0].data){
+            k=a[0].next;
+            flag=1;
+            break;
+        }
+    }
+    if(!flag)
+        printf("Item not found.\n");
+    printf("Final list: ");
+    for(j=k; j!=NULL; j=j->next){
+        printf("%d ", j->data);
+    }
+    return 0;
+}
+
